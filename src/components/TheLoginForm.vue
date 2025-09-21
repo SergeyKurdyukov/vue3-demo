@@ -30,7 +30,11 @@ const onSubmit = async () => {
   <form class="border rounded-md" @submit.prevent="onSubmit">
     <h3 class="bg-sky-700 text-white text-center px-3 py-2">Login</h3>
     <div class="flex flex-col px-3 py-2">
-      <BaseInput v-model="formData.login" placeholder="Login" :errors="r$.login.$errors" />
+      <BaseInput
+        v-model="formData.login"
+        placeholder="Login"
+        :errors="r$.login.$errors"
+      />
       <BaseInput
         v-model="formData.password"
         placeholder="Password"
