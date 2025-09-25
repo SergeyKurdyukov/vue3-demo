@@ -9,6 +9,16 @@ const formData = ref({
   password: '',
 })
 
+type TFormData = typeof formData.value
+
+const emit = defineEmits<{
+  (e: 'submit', formData: TFormData): void
+}>()
+
+const props = defineProps<{
+  isPending: boolean
+}>()
+
 const validationRules = {
   login: { required },
   password: { required },
@@ -23,6 +33,7 @@ const onSubmit = async () => {
     console.error('onSubmit form has errors:', r$, r$.$errors)
     return
   }
+  emit('submit', formData.value)
 }
 </script>
 
@@ -42,10 +53,11 @@ const onSubmit = async () => {
         type="password"
       />
       <button
-        class="border rounded-full bg-emerald-400 hover:bg-emerald-500 border-emerald-400 text-white w-fit px-4 py-1 self-center"
+        class="border rounded-full bg-emerald-400 hover:bg-emerald-500 disabled:bg-emerald-300 border-emerald-400 text-white w-fit px-4 py-1 self-center"
+        :disabled="isPending"
         type="submit"
       >
-        Send
+        {{ isPending ? 'Wait...' : 'Send' }}
       </button>
     </div>
   </form>
