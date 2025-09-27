@@ -1,5 +1,5 @@
-import { mande } from 'mande'
+import api from '.'
 
-const categories = mande('https://api.escuelajs.co/api/v1/categories')
+const categories = api('/categories')
 
 export const getCategories = () => categories.get()
