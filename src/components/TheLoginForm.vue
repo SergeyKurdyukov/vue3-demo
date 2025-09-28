@@ -5,7 +5,7 @@ import { ref } from 'vue'
 import BaseInput from './controls/BaseInput.vue'
 
 const formData = ref({
-  login: '',
+  email: '',
   password: '',
 })
 
@@ -20,7 +20,7 @@ const props = defineProps<{
 }>()
 
 const validationRules = {
-  login: { required },
+  email: { required },
   password: { required },
 }
 
@@ -39,16 +39,16 @@ const onSubmit = async () => {
 
 <template>
   <form class="border rounded-md" @submit.prevent="onSubmit">
-    <h3 class="bg-sky-700 text-white text-center px-3 py-2">Login</h3>
+    <h3 class="bg-sky-700 text-white text-center px-3 py-2">E-mail</h3>
     <div class="flex flex-col px-3 py-2">
       <BaseInput
-        v-model="formData.login"
-        placeholder="Login"
-        :errors="r$.login.$errors"
+        v-model="formData.email"
+        placeholder="E-mail: john@mail.com"
+        :errors="r$.email.$errors"
       />
       <BaseInput
         v-model="formData.password"
-        placeholder="Password"
+        placeholder="Password: changeme"
         :errors="r$.password.$errors"
         type="password"
       />
