@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRegle } from '@regle/core'
 import { required } from '@regle/rules'
-import { ref } from 'vue'
+import { ref, useTemplateRef, watch } from 'vue'
 import BaseInput from './controls/BaseInput.vue'
 
 const formData = ref({
@@ -17,6 +17,7 @@ const emit = defineEmits<{
 
 const props = defineProps<{
   isPending: boolean
+  loginError?: any
 }>()
 
 const validationRules = {
@@ -35,6 +36,17 @@ const onSubmit = async () => {
   }
   emit('submit', formData.value)
 }
+
+const loginPopoverRef = useTemplateRef('loginPopover')
+watch(
+  () => props.loginError,
+  () => {
+    // Show the login error
+    if (props.loginError) {
+      ;(loginPopoverRef.value as HTMLDivElement).showPopover()
+    }
+  },
+)
 </script>
 
 <template>
@@ -68,6 +80,15 @@ const onSubmit = async () => {
       </button>
     </div>
   </form>
+
+  <div
+    popover
+    ref="loginPopover"
+    id="login-popover"
+    class="top-[5%] left-[50%] transform-[translateX(-50%)] border border-red-500 rounded-md bg-red-50 p-4 transition delay-150 duration-300 ease-in-out opacity-0 starting:open:opacity-0 open:opacity-100"
+  >
+    {{ props.loginError?.message }}
+  </div>
 </template>
 
 <style>
