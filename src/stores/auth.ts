@@ -10,9 +10,12 @@ export const useAuthStore = defineStore('auth', () => {
   const isUserLoggedIn = computed(() => !!session)
 
   const login = async (params: { email: string; password: string }) => {
-    pendings.value.login = true
-    session.value = await authApi.login(params)
-    pendings.value.login = false
+    try {
+      pendings.value.login = true
+      session.value = await authApi.login(params)
+    } finally {
+      pendings.value.login = false
+    }
   }
 
   return {
