@@ -39,19 +39,26 @@ const onSubmit = async () => {
 
 <template>
   <form class="border rounded-md" @submit.prevent="onSubmit">
-    <h3 class="bg-sky-700 text-white text-center px-3 py-2">E-mail</h3>
+    <h3 class="bg-sky-700 text-white text-center px-3 py-2">Login form</h3>
     <div class="flex flex-col px-3 py-2">
-      <BaseInput
-        v-model="formData.email"
-        placeholder="E-mail: john@mail.com"
-        :errors="r$.email.$errors"
-      />
-      <BaseInput
-        v-model="formData.password"
-        placeholder="Password: changeme"
-        :errors="r$.password.$errors"
-        type="password"
-      />
+      <label class="grid grid-cols-[1fr_4fr] items-baseline">
+        <span>Login:</span>
+        <BaseInput
+          v-model="formData.email"
+          placeholder="E-mail: john@mail.com"
+          :errors="r$.email.$errors"
+        />
+      </label>
+
+      <label class="grid grid-cols-[1fr_4fr] items-baseline">
+        <span>Password:</span>
+        <BaseInput
+          v-model="formData.password"
+          placeholder="Password: changeme"
+          :errors="r$.password.$errors"
+          type="password"
+        />
+      </label>
       <button
         class="border rounded-full bg-emerald-400 hover:bg-emerald-500 disabled:bg-emerald-300 border-emerald-400 text-white w-fit px-4 py-1 self-center"
         :disabled="isPending"
