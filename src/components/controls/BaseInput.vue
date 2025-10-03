@@ -2,22 +2,28 @@
 const model = defineModel()
 const { errors, type = 'text' } = defineProps<{
   errors?: string[]
+  label?: string
   placeholder?: string
   type?: string
 }>()
 </script>
 
 <template>
-  <input
-    :type
-    :placeholder
-    class="border border-sky-700 hover:ring ring-sky-700 rounded-sm p-1"
-    :class="[!!errors?.length ? 'mb-0' : 'mb-3']"
-    v-model="model"
-  />
-  <ul v-if="errors?.length">
-    <li v-for="error in errors" :key="error" class="text-red-400 text-xs">
-      {{ error }}
-    </li>
-  </ul>
+  <label class="grid grid-cols-[1fr_4fr] items-baseline">
+    <span v-if="label">{{ label }}:</span>
+    <input
+      :type
+      :placeholder
+      class="border hover:ring ring-sky-700 rounded-sm p-1"
+      :class="[
+        !!errors?.length ? 'mb-0 border-red-500' : 'mb-4 border-sky-700',
+      ]"
+      v-model="model"
+    />
+    <ul v-if="errors?.length" class="col-span-full">
+      <li v-for="error in errors" :key="error" class="text-red-400 text-xs">
+        {{ error }}
+      </li>
+    </ul>
+  </label>
 </template>
