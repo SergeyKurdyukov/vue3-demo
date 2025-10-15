@@ -4,11 +4,11 @@ import { computed, ref } from 'vue'
 
 export const useAuthStore = defineStore('auth', () => {
   const error = ref()
-  const session = ref({})
+  const session = ref()
   const pendings = ref({
     login: false,
   })
-  const isUserLoggedIn = computed(() => !!session)
+  const isUserLoggedIn = computed(() => !!session.value)
 
   const login = async (params: { email: string; password: string }) => {
     try {
