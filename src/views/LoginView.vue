@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import TheLoginForm from '@/components/TheLoginForm.vue'
 import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const authStore = useAuthStore()
 
-const onSubmit = (credentials: { email: string; password: string }) => {
+const onSubmit = async (credentials: { email: string; password: string }) => {
   console.log('LoginView.onSubmit credentials:', credentials)
-  authStore.login(credentials)
+  await authStore.login(credentials)
+  if (authStore.isUserLoggedIn) {
+    router.push({ path: 'categories' })
+  }
 }
 </script>
 
