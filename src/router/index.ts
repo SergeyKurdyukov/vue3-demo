@@ -10,6 +10,13 @@ const router = createRouter({
       component: LoginView,
     },
     {
+      path: '/categories',
+      name: 'categories',
+      meta: { requiresAuth: true },
+      // route level code-splitting
+      component: () => import('../views/CategoriesView.vue'),
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
