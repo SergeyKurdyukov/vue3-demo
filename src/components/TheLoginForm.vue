@@ -57,6 +57,7 @@ watch(
         v-model="formData.email"
         label="Login"
         placeholder="E-mail: john@mail.com"
+        name="login"
         :errors="r$.email.$errors"
       />
 
@@ -64,6 +65,7 @@ watch(
         v-model="formData.password"
         label="Password"
         placeholder="Password: changeme"
+        name="password"
         :errors="r$.password.$errors"
         type="password"
       />

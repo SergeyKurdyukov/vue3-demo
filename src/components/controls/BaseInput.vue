@@ -5,6 +5,7 @@ const { errors, type = 'text' } = defineProps<{
   label?: string
   placeholder?: string
   type?: string
+  name?: string
 }>()
 </script>
 
@@ -14,6 +15,8 @@ const { errors, type = 'text' } = defineProps<{
     <input
       :type
       :placeholder
+      :id="name"
+      :name
       class="border hover:ring ring-sky-700 rounded-sm p-1"
       :class="[
         !!errors?.length ? 'mb-0 border-red-500' : 'mb-4 border-sky-700',
