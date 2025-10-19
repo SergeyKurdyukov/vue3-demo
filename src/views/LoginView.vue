@@ -11,7 +11,7 @@ const onSubmit = async (credentials: { email: string; password: string }) => {
   console.log('LoginView.onSubmit credentials:', credentials)
   await authStore.login(credentials)
   if (authStore.isUserLoggedIn) {
-    router.push({ path: 'categories' })
+    router.push({ name: 'categories' })
   }
 }
 </script>

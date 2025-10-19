@@ -54,11 +54,11 @@ const router = createRouter({
 
 router.beforeResolve((to, from) => {
   const authStore = useAuthStore()
-  console.log('beforeResolve', authStore.isUserLoggedIn)
+  console.log('beforeResolve', to, from)
   if (to.meta.requiresAuth && !authStore.isUserLoggedIn) {
     console.warn('The user is not authenticated')
     // TODO: make redirect to the login screen
-    // return '/'
+    return { name: 'login' }
   }
 })
 
