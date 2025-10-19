@@ -17,7 +17,9 @@ import { RouterLink, RouterView } from 'vue-router'
     </div>
   </header> -->
 
-  <RouterView />
+  <div class="max-w-5xl h-full mx-auto">
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
