@@ -6,16 +6,34 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/login',
       name: 'login',
       component: LoginView,
     },
     {
-      path: '/categories',
-      name: 'categories',
-      meta: { requiresAuth: true },
-      // route level code-splitting
-      component: () => import('../views/CategoriesView.vue'),
+      path: '/',
+      component: () => import('../views/CommonView.vue'),
+      children: [
+        {
+          path: '',
+          name: 'categories',
+          meta: { requiresAuth: true },
+          // route level code-splitting
+          component: () => import('../views/CategoriesView.vue'),
+        },
+        {
+          path: 'cart',
+          name: 'cart',
+          meta: { requiresAuth: true },
+          component: () => import('../views/CartView.vue'),
+        },
+        {
+          path: 'my-profile',
+          name: 'myProfile',
+          meta: { requiresAuth: true },
+          component: () => import('../views/MyProfileView.vue'),
+        },
+      ],
     },
     {
       path: '/about',
