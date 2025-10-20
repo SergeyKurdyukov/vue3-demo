@@ -17,7 +17,7 @@ const route = useRoute()
         :to="{ name: item.routeName }"
         :class="
           route.name === item.routeName
-            ? 'border-orange-500'
+            ? 'border-orange-500 font-semibold'
             : 'border-transparent'
         "
         class="px-2 border-b-4 border-solid"
@@ -26,7 +26,7 @@ const route = useRoute()
       </RouterLink>
       <span
         v-if="index !== menuItems.length - 1"
-        class="text-blue-600 px-1 font-bold"
+        class="text-sky-700 px-1 font-bold"
         >|</span
       >
     </div>
