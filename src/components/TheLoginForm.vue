@@ -37,13 +37,13 @@ const onSubmit = async () => {
   emit('submit', formData.value)
 }
 
-const loginPopoverRef = useTemplateRef('loginPopover')
+const loginPopoverRef = useTemplateRef<HTMLDivElement>('loginPopover')
 watch(
   () => props.loginError,
   () => {
     // Show the login error
-    if (props.loginError) {
-      ;(loginPopoverRef.value as HTMLDivElement).showPopover()
+    if (props.loginError && loginPopoverRef.value) {
+      loginPopoverRef.value.showPopover()
     }
   },
 )
