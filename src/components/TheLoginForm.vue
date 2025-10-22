@@ -86,7 +86,7 @@ watch(
     id="login-popover"
     class="left-[50%] transform-[translateX(-50%)] border border-red-500 rounded-md bg-red-50 p-4 transition-all delay-150 duration-700 ease-in-out starting:open:opacity-0 open:opacity-100 starting:open:top-[0%] open:top-[5%]"
   >
-    {{ props.loginError?.message }}
+    {{ loginError?.message }}
   </div>
 </template>
 
