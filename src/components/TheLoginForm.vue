@@ -75,7 +75,13 @@ watch(
         :disabled="isPending"
         type="submit"
       >
-        {{ isPending ? 'Wait...' : 'Send' }}
+        <img
+          v-if="isPending"
+          alt="Progress wheel"
+          class="w-6"
+          src="@/assets/spinner.svg"
+        />
+        <span v-else>{{ 'Send' }}</span>
       </button>
     </div>
   </form>
