@@ -6,6 +6,12 @@ const products = api('/products')
 
 export const getCategories = () => categories.get<ICategory[]>()
 
+export const getProducts = (categoryId: ICategory['id']) =>
+  products.get<IProduct[]>({
+    query: { categoryId },
+  })
+
 export default {
   getCategories,
+  getProducts,
 }

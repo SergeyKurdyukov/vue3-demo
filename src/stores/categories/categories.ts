@@ -1,11 +1,12 @@
 import api from '@/stores/categories/categories.api'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import type { ICategory } from './categories.types'
+import type { ICategory, IProduct } from './categories.types'
 
 export const useCategoriesStore = defineStore('categories', () => {
   const pendings = ref({
     getCategories: false,
+    getProducts: false,
   })
 
   const categories = ref<ICategory[]>([])
@@ -36,11 +37,30 @@ export const useCategoriesStore = defineStore('categories', () => {
     }
   }
 
+  const products = ref<IProduct[]>([])
+
+  const getProducts = async (categoryId: ICategory['id']) => {
+    try {
+      pendings.value.getProducts = true
+      const result = await api.getProducts(categoryId)
+      products.value = result
+      return result
+    } catch (e: any) {
+      console.error('Categories store.getProducts', e)
+      return []
+    } finally {
+      pendings.value.getProducts = false
+    }
+  }
+
   return {
     pendings,
 
     categories,
     filteredCategories,
     getCategories,
+
+    products,
+    getProducts,
   }
 })

@@ -19,6 +19,8 @@ const selectedCategory = ref<ICategory | null>()
 const onCategoryClick = async (category: ICategory) => {
   console.log('onCategoryClick category:', category)
   selectedCategory.value = category
+  const products = await categoriesStore.getProducts(selectedCategory.value.id)
+  console.log('onCategoryClick products:', products)
 }
 </script>
 
@@ -49,7 +51,17 @@ const onCategoryClick = async (category: ICategory) => {
         </li>
       </ul>
 
-      <div>Product list</div>
+      <div>
+        <ul>
+          <li
+            v-for="product in categoriesStore.products"
+            :key="product.id"
+            class="p-2 m-4 w-64 h-64 rounded-md border-1 hover:border-2 hover:border-blue-400 hover:bg-blue-200 hover:text-yellow-600 hover:font-bold"
+          >
+            {{ product.title }}
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
