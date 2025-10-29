@@ -8,8 +8,18 @@ const categoriesStore = useCategoriesStore()
 
 onMounted(async () => {
   categories.value = await categoriesStore.getCategories()
-  console.log('CategoriesView.onMounted categories:', categories.value)
+  console.log(
+    'CategoriesView.onMounted categories:',
+    categories.value,
+    categoriesStore.filteredCategories,
+  )
 })
+
+const selectedCategory = ref<ICategory | null>()
+const onCategoryClick = async (category: ICategory) => {
+  console.log('onCategoryClick category:', category)
+  selectedCategory.value = category
+}
 </script>
 
 <template>
@@ -24,7 +34,17 @@ onMounted(async () => {
         src="@/assets/spinner.svg"
       />
       <ul>
-        <li v-for="category in categories" :key="category.id">
+        <li
+          v-for="category in categoriesStore.filteredCategories"
+          :key="category.id"
+          class="p-2 rounded-md border-2 hover:bg-stone-400 hover:text-white hover:font-bold"
+          :class="
+            selectedCategory?.id === category.id
+              ? 'border-orange-500'
+              : 'border-transparent'
+          "
+          @click="onCategoryClick(category)"
+        >
           {{ category.name }}
         </li>
       </ul>
