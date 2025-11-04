@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { useCategoriesStore } from '@/stores/categories/categories'
+import type { IProduct } from '@/stores/categories/categories.types'
 
 const categoriesStore = useCategoriesStore()
+
+const onAddToCart = (product: IProduct) => {
+  categoriesStore.cart.push(product)
+  console.log('categoriesStore.cart:', categoriesStore.cart)
+}
 </script>
 
 <template>
@@ -18,9 +24,16 @@ const categoriesStore = useCategoriesStore()
       <li
         v-for="product in categoriesStore.products"
         :key="product.id"
-        class="flex flex-col justify-between gap-2 p-2 m-4 w-45 rounded-md border-1 hover:border-2 hover:border-blue-400 hover:bg-blue-200 hover:text-yellow-600 hover:font-bold transition-all delay-150 duration-300 ease-in-out"
+        class="flex flex-col justify-between gap-2 p-2 m-4 w-45 rounded-md border-1 hover:border-blue-400 hover:bg-blue-200 hover:text-yellow-700 transition-all delay-150 duration-300 ease-in-out relative"
       >
         {{ product.title }}
+        <button
+          class="bg-orange-500/50 hover:bg-orange-500 text-white text-lg rounded-full w-8 h-8 absolute right-5 transition-colors delay-150 duration-300 ease-in-out"
+          @click="onAddToCart(product)"
+        >
+          +
+        </button>
+
         <img :src="product.images[0]" alt="Product image" />
       </li>
     </ul>

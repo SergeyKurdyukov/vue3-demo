@@ -53,8 +53,11 @@ export const useCategoriesStore = defineStore('categories', () => {
     }
   }
 
+  const cart = ref<IProduct[]>([])
+
   return {
     pendings,
+    cart,
 
     categories,
     filteredCategories,
