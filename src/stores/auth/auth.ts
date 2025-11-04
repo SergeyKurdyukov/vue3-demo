@@ -13,8 +13,8 @@ export const useAuthStore = defineStore('auth', () => {
   })
 
   const isUserLoggedIn = computed(() => {
-    const savedSession = sessionStorage.getItem(SESSION_KEY)
-    return savedSession ? JSON.parse(savedSession) : null
+    const savedSession = session.value || sessionStorage.getItem(SESSION_KEY)
+    return !!savedSession
   })
 
   const login = async (params: { email: string; password: string }) => {
