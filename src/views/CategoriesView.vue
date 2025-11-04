@@ -55,7 +55,7 @@ const onCategoryClick = async (category: ICategory) => {
         </li>
       </ul>
 
-      <ProductList v-if="selectedCategory" :category="selectedCategory" />
+      <ProductList v-if="selectedCategory" />
     </div>
   </div>
 </template>
