@@ -1,5 +1,6 @@
+// FIXME: move into the folder like `categories` store
 import { defineStore } from 'pinia'
-import authApi from '@/api/auth'
+import authApi from '@/stores/auth/auth.api'
 import { computed, ref } from 'vue'
 
 const SESSION_KEY = 'sessionKey'

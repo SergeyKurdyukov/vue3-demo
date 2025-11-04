@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import TheLoginForm from '@/components/TheLoginForm.vue'
-import { useAuthStore } from '@/stores/auth'
+import { useAuthStore } from '@/stores/auth/auth'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
