@@ -18,3 +18,7 @@ export interface IProduct {
   title: string
   updatedAt: string
 }
+
+export interface IProductCart extends IProduct {
+  count?: number
+}

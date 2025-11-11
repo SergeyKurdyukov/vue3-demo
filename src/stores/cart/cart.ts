@@ -1,15 +1,15 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import type { IProduct } from '../categories/categories.types'
+import type { IProductCart } from '../categories/categories.types'
 
 export const useCartStore = defineStore('cart', () => {
-  const cart = ref<IProduct[]>([])
+  const cart = ref<IProductCart[]>([])
 
-  const onAddToCart = (product: IProduct) => {
+  const onAddToCart = (product: IProductCart) => {
     cart.value.push(product)
   }
 
-  const removeFromCart = (productToRemove: IProduct) => {
+  const removeFromCart = (productToRemove: IProductCart) => {
     const indexToRemove = cart.value.findIndex(
       (product) => product.id === productToRemove.id,
     )
