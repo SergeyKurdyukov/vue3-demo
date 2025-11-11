@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useCartStore } from '@/stores/cart/cart'
+import BaseCounter from '@/components/controls/BaseCounter.vue'
 
 const cartStore = useCartStore()
 </script>
@@ -25,6 +26,7 @@ const cartStore = useCartStore()
         <div class="p-4">
           <h3 class="text-md font-bold mb-4">{{ product.title }}</h3>
           <p>{{ product.description }}</p>
+          <BaseCounter v-model:count="product.count" />
         </div>
 
         <button
