@@ -1,13 +1,9 @@
 <script setup lang="ts">
+import { useCartStore } from '@/stores/cart/cart'
 import { useCategoriesStore } from '@/stores/categories/categories'
-import type { IProduct } from '@/stores/categories/categories.types'
 
 const categoriesStore = useCategoriesStore()
-
-const onAddToCart = (product: IProduct) => {
-  categoriesStore.cart.push(product)
-  console.log('categoriesStore.cart:', categoriesStore.cart)
-}
+const cartStore = useCartStore()
 </script>
 
 <template>
@@ -29,7 +25,7 @@ const onAddToCart = (product: IProduct) => {
         {{ product.title }}
         <button
           class="bg-orange-500/50 hover:bg-orange-500 text-white text-lg rounded-full w-8 h-8 absolute right-5 transition-colors delay-150 duration-300 ease-in-out"
-          @click="onAddToCart(product)"
+          @click="cartStore.onAddToCart(product)"
         >
           +
         </button>
