@@ -6,6 +6,7 @@ export const useCartStore = defineStore('cart', () => {
   const cart = ref<IProductCart[]>([])
 
   const onAddToCart = (product: IProductCart) => {
+    product.count = 1
     cart.value.push(product)
   }
 

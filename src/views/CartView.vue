@@ -1,8 +1,14 @@
 <script lang="ts" setup>
 import { useCartStore } from '@/stores/cart/cart'
 import BaseCounter from '@/components/controls/BaseCounter.vue'
+import type { IProductCart } from '@/stores/categories/categories.types'
 
 const cartStore = useCartStore()
+const onCountUpdate = (value: number, product: IProductCart) => {
+  if (!value) {
+    cartStore.removeFromCart(product)
+  }
+}
 </script>
 
 <template>
@@ -26,7 +32,10 @@ const cartStore = useCartStore()
         <div class="p-4">
           <h3 class="text-md font-bold mb-4">{{ product.title }}</h3>
           <p>{{ product.description }}</p>
-          <BaseCounter v-model:count="product.count" />
+          <BaseCounter
+            v-model:count="product.count"
+            @update:count="onCountUpdate($event, product)"
+          />
         </div>
 
         <button
