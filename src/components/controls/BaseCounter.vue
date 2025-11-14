@@ -11,7 +11,7 @@ const count = defineModel<number>('count', { type: Number, default: 0 })
     >
       -
     </button>
-    <input disabled v-model="count" class="w-10 text-center" />
+    <input disabled v-model="count" class="w-10 text-center bg-white" />
     <button
       @click="count++"
       class="w-5 cursor-pointer bg-stone-400 hover:bg-stone-500"
