@@ -2,6 +2,9 @@ import api from '@/stores/categories/categories.api'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import type { ICategory, IProductCart } from './categories.types'
+import { useCartStore } from '../cart/cart'
+
+const cartStore = useCartStore()
 
 export const useCategoriesStore = defineStore('categories', () => {
   const pendings = ref({
@@ -39,6 +42,16 @@ export const useCategoriesStore = defineStore('categories', () => {
 
   const products = ref<IProductCart[]>([])
 
+  const preparedProducts = computed((): IProductCart[] => {
+    return products.value.map((product) => {
+      const productInCart = cartStore.cart.find(
+        (cartProduct) => cartProduct.id === product.id,
+      )
+      product.count = productInCart ? productInCart.count : 0
+      return product
+    })
+  })
+
   const getProducts = async (categoryId: ICategory['id']) => {
     try {
       pendings.value.getProducts = true
@@ -65,6 +78,7 @@ export const useCategoriesStore = defineStore('categories', () => {
     getCategories,
 
     products,
+    preparedProducts,
     getProducts,
   }
 })
