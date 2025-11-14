@@ -39,7 +39,7 @@ const onCountUpdate = (value: number, product: IProductCart) => {
         </div>
 
         <button
-          class="bg-orange-500/50 hover:bg-orange-500 text-white text-lg rounded-full w-8 h-8 absolute top-3 right-3 transition-colors delay-150 duration-300 ease-in-out"
+          class="bg-orange-500/50 flex items-baseline justify-center hover:bg-orange-500 text-white text-lg rounded-full w-8 h-8 absolute top-3 right-3 transition-colors delay-150 duration-300 ease-in-out"
           @click="cartStore.removeFromCart(product)"
         >
           -

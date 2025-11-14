@@ -24,7 +24,7 @@ const cartStore = useCartStore()
       >
         {{ product.title }}
         <button
-          class="bg-orange-500/50 hover:bg-orange-500 text-white text-lg rounded-full w-8 h-8 absolute right-5 transition-colors delay-150 duration-300 ease-in-out"
+          class="bg-orange-500/50 flex items-baseline justify-center hover:bg-orange-500 text-white text-lg rounded-full w-8 h-8 absolute right-5 transition-colors delay-150 duration-300 ease-in-out"
           @click="cartStore.onAddToCart(product)"
         >
           +
