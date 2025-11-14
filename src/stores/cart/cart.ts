@@ -6,6 +6,11 @@ export const useCartStore = defineStore('cart', () => {
   const cart = ref<IProductCart[]>([])
 
   const onAddToCart = (product: IProductCart) => {
+    const sameProduct = cart.value.find((p) => p.id === product.id)
+    if (sameProduct) {
+      sameProduct.count++
+      return
+    }
     product.count = 1
     cart.value.push(product)
   }

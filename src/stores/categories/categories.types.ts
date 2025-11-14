@@ -20,5 +20,5 @@ export interface IProduct {
 }
 
 export interface IProductCart extends IProduct {
-  count?: number
+  count: number
 }
