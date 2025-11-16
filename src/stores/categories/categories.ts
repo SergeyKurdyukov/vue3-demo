@@ -1,7 +1,7 @@
 import api from '@/stores/categories/categories.api'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import type { ICategory, IProductCart } from './categories.types'
+import type { ICategory, IProduct, IProductCart } from './categories.types'
 import { useCartStore } from '../cart/cart'
 
 const cartStore = useCartStore()
@@ -56,9 +56,11 @@ export const useCategoriesStore = defineStore('categories', () => {
     try {
       pendings.value.getProducts = true
       const result = await api.getProducts(categoryId)
-      const preparedResult = result.map((product: IProductCart) => {
-        product.count = 0
-        return product
+      const preparedResult: IProductCart[] = result.map((product: IProduct) => {
+        return {
+          ...product,
+          count: 0,
+        }
       })
       products.value = preparedResult
       return result
