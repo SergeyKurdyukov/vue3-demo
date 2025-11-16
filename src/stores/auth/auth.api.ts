@@ -1,6 +1,5 @@
 import api from '../../api'
-
-const auth = api('/auth/login')
+import type { ILoginResponse, IUser } from './auth.types'
 
 export default {
   login: (credentials: {
@@ -9,5 +8,11 @@ export default {
   }): Promise<{
     access_token: string
     refresh_token: string
-  }> => auth.post(credentials),
+  }> => api('/auth/login').post(credentials),
+
+  getUserProfile: (token: ILoginResponse['access_token']): Promise<IUser> => {
+    const profileApi = api('/auth/profile')
+    profileApi.options.headers.Authorization = 'Bearer ' + token
+    return profileApi.get()
+  },
 }
