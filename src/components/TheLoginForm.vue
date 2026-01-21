@@ -31,7 +31,7 @@ const onSubmit = async () => {
   console.log('onSubmit formData:', formData.value)
   const { valid } = await r$.$validate()
   if (!valid) {
-    console.error('onSubmit form has errors:', r$, r$.$errors)
+    // console.error('onSubmit form has errors:', r$, r$.$errors)
     return
   }
   emit('submit', formData.value)
