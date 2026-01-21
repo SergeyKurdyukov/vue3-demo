@@ -25,4 +25,21 @@ describe('Login tests', async () => {
       .element(screen.getByLabelText('Password'))
       .toHaveClass('border-red-500')
   })
+
+  test('Check partial empty fields processing', async () => {
+    const screen = render(TheLoginForm)
+    await screen.getByText('Send').click()
+
+    const loginInput = screen.getByLabelText('Login')
+    await expect.element(loginInput).toHaveClass('border-red-500')
+
+    await loginInput.fill('test-login')
+    await expect.element(loginInput).not.toHaveClass('border-red-500')
+
+    const passwordInput = screen.getByLabelText('Password')
+    await expect.element(passwordInput).toHaveClass('border-red-500')
+
+    await passwordInput.fill('test-password')
+    await expect.element(passwordInput).not.toHaveClass('border-red-500')
+  })
 })
