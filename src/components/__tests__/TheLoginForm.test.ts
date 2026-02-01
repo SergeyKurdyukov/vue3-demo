@@ -40,4 +40,31 @@ describe('Login form tests:', async () => {
     await passwordInput.fill('test-password')
     await expect.element(passwordInput).not.toHaveClass('border-red-500')
   })
+
+  test('Check a loading state', async () => {
+    const screen = render(TheLoginForm, {
+      props: {
+        isPending: true,
+      },
+    })
+    const progress = screen.getByAltText('Progress wheel')
+    await expect.element(progress).toBeInTheDocument()
+  })
+
+  test('Check an error popover', async () => {
+    const screen = render(TheLoginForm, {
+      props: {
+        isPending: false,
+      },
+    })
+
+    screen.rerender({
+      isPending: false,
+      loginError: { message: 'Incorrect data' },
+    } as { isPending: boolean; loginError?: { message: string } })
+    // await nextTick()
+
+    const alert = screen.getByText('Incorrect data')
+    await expect.element(alert).toBeInTheDocument()
+  })
 })
