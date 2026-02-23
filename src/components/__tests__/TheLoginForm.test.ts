@@ -47,8 +47,10 @@ describe('Login form tests:', async () => {
         isPending: true,
       },
     })
-    const progress = screen.getByAltText('Progress wheel')
+    const progress = screen.getByRole('button', { name: /progress wheel/i })
     await expect.element(progress).toBeInTheDocument()
+    await expect.element(progress).toBeDisabled()
+    await expect.element(screen.getByText('Send')).not.toBeInTheDocument()
   })
 
   test('Check an error popover', async () => {
