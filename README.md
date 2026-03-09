@@ -1,18 +1,15 @@
 # vue3-demo
 
-This template should help get you started developing with Vue 3 in Vite.
+This project has been created as a pet project to test some Vue3 features. Node22 is uses here.
 
-## Recommended IDE Setup
+There are some features:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+- used Composition API
+- `RouterView` component has been used in 2 places `src\App.vue` and `src\views\CommonView.vue` to try such routing configuration
+- `mande` library has been used as the lightweight fetch-based modern HTTP client instead of `axios`
+- used [Platzi Fake Store API](https://fakeapi.platzi.com/en/about/introduction/) to make login and get categories and products
+- making form validation with a modern `regle` library instead of `vuelidate`
+- using TailwindCSS
 
 ## Project Setup
 
@@ -36,22 +33,6 @@ npm run build
 
 ```sh
 npm run test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
 ```
 
 ### Lint with [ESLint](https://eslint.org/)
