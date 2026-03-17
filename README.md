@@ -1,6 +1,6 @@
 # vue3-demo
 
-This project has been created as a pet project to test some Vue3 features. Node22 is uses here.
+This project has been created as a pet project to test some Vue3 features. Node22 is used here.
 
 There are some features:
 
@@ -9,6 +9,8 @@ There are some features:
 - `mande` library has been used as the lightweight fetch-based modern HTTP client instead of `axios`
 - used [Platzi Fake Store API](https://fakeapi.platzi.com/en/about/introduction/) to make login and get categories and products
 - making form validation with a modern `regle` library instead of `vuelidate`
+- using the `<div popover></div>` into `src\components\TheLoginForm.vue` to show a login error
+- using `vue3-counter` remote component via `@module-federation/vite`. Note: the remote static server should be started to get that component.
 - using TailwindCSS
 
 ## Project Setup
