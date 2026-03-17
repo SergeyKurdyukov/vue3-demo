@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { useCartStore } from '@/stores/cart/cart'
 import { useCategoriesStore } from '@/stores/categories/categories'
-import BaseCounter from './controls/BaseCounter.vue'
+
+// import BaseCounter from './controls/BaseCounter.vue'
+import { defineAsyncComponent } from 'vue'
+const BaseCounter = defineAsyncComponent(
+  () => import('vue3-counter/remote-app'),
+)
+
 import type { IProductCart } from '@/stores/categories/categories.types'
 
 const categoriesStore = useCategoriesStore()
